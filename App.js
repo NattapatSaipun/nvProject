@@ -8,49 +8,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AboutScreen from './screens/AboutScreen';
 import React from 'react';
 
+import FirstPage from './pages/FirstPage';
+import SecondPage from './pages/SecondPage';
+import ThirdPage from './pages/ThirdPage';
 
-function HomeScreen({navigation,route}){
 
-  React.useEffect(()=>{
-    if(route.params?.post){
-      //Post 
-    }
-  },[route.params?.post]);
- return(
-  <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-    <Button 
-    title='Create Post'
-    onPress={()=>navigation.navigate ('CreatePost')}/>
-    <Text style={{margin: 10}}>
-      Post:{route.params?.post}
-    </Text>
-  </View>
- );
-}
-
-function CreatePostScreen({navigation,route}){
-  const [postText,setPostText] = React.useState('');
-  return(
-    // Use fragment
-    <> 
-      <TextInput 
-        multiline
-        placeholder='Please Text here'
-        style = {{height:200, padding:10, backgroundColor:'white'}}
-        onChangeText={setPostText}
-        value = {postText}
-        />
-        <Button 
-          title='Click'
-          onPress={()=> {
-            // pass params back to HomeScreen funtion
-            navigation.navigate('Home',{post: postText})
-          }}/>
-
-      
-    </>
-  );
-}
 
 const Stack = createNativeStackNavigator();
 
@@ -66,8 +28,9 @@ export default function App() {
         headerTitleStyle:{fontweith:'bold'}
       }}
       >
-        <Stack.Screen name='Home' component={HomeScreen}/>
-        <Stack.Screen name='CreatePost' component={CreatePostScreen}/>
+        <Stack.Screen name='First Page' component={FirstPage}/>
+        <Stack.Screen name='Second Page' component={SecondPage}/>
+        <Stack.Screen name='Third Page' component={ThirdPage}/>
     </Stack.Navigator>
    </NavigationContainer>
   );
