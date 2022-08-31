@@ -1,41 +1,76 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , Button, TextInput} from 'react-native';
+
+import { View , Button,Text} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//import HomeScreen from './screens/HomeScreen';
-import AboutScreen from './screens/AboutScreen';
+
+
 import React from 'react';
 
-import FirstPage from './pages/FirstPage';
-import SecondPage from './pages/SecondPage';
-import ThirdPage from './pages/ThirdPage';
+
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem
+
+} from '@react-navigation/drawer'
+
+function Feed (){
+  return(
+    <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
+     <Text>
+      Feed Sceen
+     </Text>
+       
+    </View>
+  );
+}
+function Artical (){
+  return(
+    <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
+     <Text>
+     Artical Sceen
+     </Text>
+       
+    </View>
+  );
+}
+function CustomDrawerContent(props){
+   return(
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props}/>
+      <DrawerItem label="help" onPress={()=>alert('Link to help')}/>
+    </DrawerContentScrollView>
+   )
+}
+const Drawer = createDrawerNavigator();
+
+function MyDrawer(){
+  return(
+    <Drawer.Navigator 
+    useLegacyImplementation
+    drawerContent={(props)=> <CustomDrawerContent {...props}/>}
+    screenOptions={{
+      drawerStyle:{
+        backgroundColor:'skyblue',
+        width:240
+      }
+    }}
+    >
+        <Drawer.Screen name="Feed" component={Feed}/>
+        <Drawer.Screen name="Artical" component={Artical}/>
+      </Drawer.Navigator>
+  )
+}
 
 
-
-const Stack = createNativeStackNavigator();
-
-
-export default function App() {
+const App = () => {
   return (
-   <NavigationContainer>
-    <Stack.Navigator 
-      initialRouteName='Home'
-      screenOptions={{
-        headerStyle:{backgroundColor:'#00ced1'},
-        headerTintColor:'#fff',
-        headerTitleStyle:{fontweith:'bold'}
-      }}
-      >
-        <Stack.Screen name='First Page' component={FirstPage}/>
-        <Stack.Screen name='Second Page' component={SecondPage}/>
-        <Stack.Screen name='Third Page' component={ThirdPage}/>
-    </Stack.Navigator>
-   </NavigationContainer>
+    <NavigationContainer>
+      <MyDrawer/>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  
-});
+export default App
