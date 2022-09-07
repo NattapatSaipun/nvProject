@@ -1,12 +1,12 @@
 
-import { View , Button,Text,StyleSheet,SafeAreaView,Image} from 'react-native';
+import { View , Button,Text} from 'react-native';
 
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 
 
 
 import React from 'react';
-import HomeScreen from './screens/HomeScreen';
+
 
 import {
   createDrawerNavigator,
@@ -15,7 +15,6 @@ import {
   DrawerItem
 
 } from '@react-navigation/drawer'
-
 
 
 const Mytheme = {
@@ -39,11 +38,11 @@ function Feed ({navigation}){
     </View>
   );
 }
-function Noncification (){
+function Artical (){
   return(
     <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
      <Text>
-     Noncification Sceen
+     Artical Sceen
      </Text>
        
     </View>
@@ -51,16 +50,12 @@ function Noncification (){
 }
 function CustomDrawerContent(props){
    return(
-   <SafeAreaView style={{flex:1}}> 
-    <Image  source={require('C:/nvProject/assets/react_logo.png')}
-    style={styles.sideMenuProfileIcon}/>
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props}/>
-      {/* <DrawerItem label="ToggleDrawer" onPress={()=>props.navigation.toggleDrawer()}/> */}
+      <DrawerItem label="ToggleDrawer" onPress={()=>props.navigation.toggleDrawer()}/>
       <DrawerItem label="CloseDrawer" onPress={()=>props.navigation.closeDrawer()}/>
       
     </DrawerContentScrollView>
-    </SafeAreaView>
    )
 }
 const Drawer = createDrawerNavigator();
@@ -77,8 +72,8 @@ function MyDrawer(){
       }
     }}
     >
-        <Drawer.Screen name="Home" component={HomeScreen}/>
-        <Drawer.Screen name="Noncification" component={Noncification}/>
+        <Drawer.Screen name="Feed" component={Feed}/>
+        <Drawer.Screen name="Artical" component={Artical}/>
       </Drawer.Navigator>
   )
 }
@@ -91,7 +86,5 @@ const App = () => {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({sideMenuProfileIcon: {resizeMode: 'center',width: 100,height: 100,borderRadius: 100 / 2,alignSelf: 'center',},})
 
 export default App
